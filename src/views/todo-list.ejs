@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List Todo</title>
+  <style>
+    .item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .item .actions {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .pages {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/navbar') -%>
+  <div class="item">
+    <h1>List</h1>
+    <a href="/todo/create">
+      <button type="button">Add Todo</button>
+    </a>
+  </div>
+  <% for (const todo of todos) { %>
+    <div class="item">
+      <div class="summary">
+        <p><%= todo.name %></p>
+      </div>
+      <div class="actions">
+        <a href="/todo/detail/<%= todo.id %>">
+          <button type="button">View</button>
+        </a>
+        <a href="/todo/update/<%= todo.id %>">
+          <button type="button">Edit</button>
+        </a>
+        <form method="POST" action="/todo/delete/<%= todo.id %>">
+          <button type="submit">Delete</button>
+        </form>
+      </div>
+    </div>
+    <hr />
+  <% } %>
+  <br />
+  <br />
+  <div class="pages">
+    <div>
+      <h3>Pages</h3>
+      <div class="text-center">
+        <% for (let i = 1; i <= count; i++) { %>
+          <% if (i == currentPage) { %>
+            <span><%= i %></span>
+          <% } else { %>
+            <a href="/todo?page=<%= i %>"><%= i %></a>
+          <% } %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

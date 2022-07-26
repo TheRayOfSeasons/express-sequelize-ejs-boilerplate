@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update <%= todo.name %></title>
+</head>
+<body>
+  <%- include('partials/navbar') -%>
+  <h1>Update Todo</h1>
+  <form id="todo-form" method="POST" action="/todo/update/<%= todo.id %>">
+    <label for="todo-form-title">Title</label>
+    <br />
+    <input type="text" name="title" id="todo-form-title" value="<%= todo.name %>" />
+    <br />
+    <label for="todo-form-description">Description</label>
+    <br />
+    <textarea rows="4" name="description" id="todo-form-description"><%= todo.description %></textarea>
+    <br />
+    <input type="submit" display="Submit" />
+  </form>
+  <hr />
+</body>
+</html>
